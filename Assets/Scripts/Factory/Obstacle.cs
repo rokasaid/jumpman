@@ -12,6 +12,7 @@ namespace Assets.Scripts
 
         public override void PlaySound()
         {
+            // Added a comment.
             throw new System.NotImplementedException();
         }
     }

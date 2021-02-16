@@ -15,6 +15,8 @@ namespace Assets.Scripts.Controllers
         void Start()
         {
             InitScene();
+            // Attach observers.
+            gameItemDespawner.GetComponent<ObservableBase>().Attach(gameItemSpawner.GetComponent<IObserver>());
         }
 
         // Update is called once per frame

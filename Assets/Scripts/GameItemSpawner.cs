@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class GameItemSpawner : MonoBehaviour
+    public class GameItemSpawner : MonoBehaviour, IObserver
     {
         public GameObject ground, obstacle, healthOrb, player;
         private List<GameObject> gameItems = new List<GameObject>();
@@ -99,6 +99,17 @@ namespace Assets.Scripts
                 yield return new WaitForSeconds(1.5f);
             }
 
+        }
+
+        /*
+         * OBSERVER PATTERN UPDATE METHOD.
+         * 
+         * Passes the object to be erased from the list of references
+         * in GameItemSpawner.
+         */
+        public void Update(GameObject gameItem)
+        {
+            gameItems.Remove(gameItem);
         }
     }
 }

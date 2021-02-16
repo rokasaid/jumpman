@@ -48,6 +48,7 @@ namespace Assets.Scripts
                 characterObject.velocity = new Vector3(characterObject.velocity.x, 0, characterObject.velocity.z);
             }
 
+            // FIXME NullPtrEx on jumping 
             if (collision.collider.gameObject.GetComponent<AbstractGameItem>().Collide().Equals(PlayerEvent.HealthOrbEvent))
             {
                 Controllers.GameStateController.instance.IncreaseHealth();

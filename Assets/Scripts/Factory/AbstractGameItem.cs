@@ -7,7 +7,6 @@ namespace Assets.Scripts
     public abstract class AbstractGameItem : MonoBehaviour
     {
         private float speed = -5f;
-
         public abstract PlayerEvent Collide();
         public abstract void PlaySound();
 

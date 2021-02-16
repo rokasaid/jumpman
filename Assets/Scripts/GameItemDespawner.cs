@@ -6,9 +6,10 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class GameItemDespawner : MonoBehaviour
+    public class GameItemDespawner : ObservableBase
     {
         public GameObject ground;
+        private List<IObserver> observers = new List<IObserver>();
         private List<GameObject> gameItems = new List<GameObject>();
 
         // Start is called before the first frame update
@@ -52,12 +53,37 @@ namespace Assets.Scripts
             );
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            // Notify observer.
+            Notify(collision.collider.gameObject);
+            GameObject.Destroy(collision.collider.gameObject);
+        }
+
 
         public List<GameObject> CleanGameItems()
         {
             gameItems.ForEach(gameItem => GameObject.Destroy(gameItem));
             gameItems = new List<GameObject>();
             return gameItems;
+        }
+
+        /*
+         * OBSERVER PATTERN METHODS.
+         */
+        public override void Attach(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public override void Detach(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public override void Notify(GameObject toDestroy)
+        {
+            foreach (IObserver observer in observers) observer.Update(toDestroy);
         }
     }
 }

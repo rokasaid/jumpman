@@ -8,7 +8,7 @@ namespace Assets.Scripts
 {
     public class GameItemSpawner : MonoBehaviour
     {
-        public GameObject ground, obstacle, healthOrb;
+        public GameObject ground, obstacle, healthOrb, player;
         private List<GameObject> gameItems = new List<GameObject>();
 
         // Start is called before the first frame update
@@ -29,12 +29,10 @@ namespace Assets.Scripts
             // Initialises game item spawner to a location relative to the plane.
             Vector3 groundPos = ground.transform.position;
             Vector3 groundScale = ground.transform.localScale;
-            Vector3 clonePos = obstacle.transform.position;
-            Vector3 cloneScale = obstacle.transform.localScale;
 
             this.transform.position = new Vector3(
                 groundPos.x,
-                clonePos.y,
+                groundPos.y + 1.5f,
                 groundPos.z * Mathf.Pow(groundScale.z, 2)
             );
 
@@ -47,13 +45,13 @@ namespace Assets.Scripts
 
         private List<GameObject> SpawnGameItems(List<GameObject> gameItems, GameObject gameItemToSpawn)
         {
-            gameItems = new List<GameObject>();
             Vector3 spawnerPos = this.transform.position;
             Vector3 spawnerScale = this.transform.localScale;
 
             GameObject spawnedGameItem = GameObject.Instantiate(gameItemToSpawn);
             spawnedGameItem.SetActive(true);
 
+            // Randomise x position of spawned game item.
             spawnedGameItem.transform.position = new Vector3(
                 Random.Range(-(spawnerPos.x * Mathf.Pow(spawnerScale.x, 2)), (spawnerPos.x * Mathf.Pow(spawnerScale.x, 2))) + spawnedGameItem.transform.localScale.x,
                 spawnerPos.y,

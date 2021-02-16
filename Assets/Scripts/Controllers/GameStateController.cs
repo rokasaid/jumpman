@@ -71,10 +71,15 @@ namespace Assets.Scripts.Controllers
 
         public void DecreaseHealth()
         {
-            player.GetComponent<Player>().health -= 1;
-            playerHealth = player.GetComponent<Player>().health;
-            RenderHealthSprites(playerHealth);
-            ReinitialiseGame();
+            int tempPlayerHealth = player.GetComponent<Player>().health;
+            int healthLimit = 0;
+            if (tempPlayerHealth > healthLimit)
+            {
+                player.GetComponent<Player>().health -= 1;
+                playerHealth = player.GetComponent<Player>().health;
+                RenderHealthSprites(playerHealth);
+                ReinitialiseGame();
+            }
         }
 
         private void RenderHealthSprites(int health)

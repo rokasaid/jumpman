@@ -14,7 +14,7 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
-            InitSpawner();
+            InitDespawner();
         }
 
         // Update is called once per frame
@@ -23,23 +23,32 @@ namespace Assets.Scripts
 
         }
 
-        void InitSpawner()
+        void InitDespawner()
         {
-            // Initialises game item spawner to a location relative to the plane.
+            /* Initialises game item spawner to a location relative to the plane.
+             * 
+             * WARNING, UNITY MAKES AN ARBITRATY DECISION FOR PLANE SCALING AND 
+             * DOES NOT ATTEMPT TO NOTIFY YOU ABOUT IT.
+             * 
+             * Scaling a unit on a plane is 10x the scale on a 3d object like a cube, meaning
+             * if we want to place a 3d object to a position relative of a plane, we must take
+             * into account that the units are 10x greater.
+             * 
+             * Tl;dr - use groundScale * 5 to position the spawner.
+             */
             Vector3 groundPos = ground.transform.position;
             Vector3 groundScale = ground.transform.localScale;
+            float despawnerScaleY = 5;
 
             this.transform.position = new Vector3(
                 groundPos.x,
-                groundPos.y,
-                //Mathf.Pow(groundPos.z, 2) * (groundScale.z)
-                (groundPos.z + groundScale.z) * 2
+                groundPos.y + (despawnerScaleY / 2),
+                -groundScale.z * (10 / 2) // ???
             );
-
             this.transform.localScale = new Vector3(
-                1.5f,
-                1,
-                0.1f
+                groundScale.x * 10,
+                despawnerScaleY,
+                1
             );
         }
 

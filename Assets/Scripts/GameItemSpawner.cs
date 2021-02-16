@@ -26,18 +26,30 @@ namespace Assets.Scripts
 
         void InitSpawner()
         {
-            // Initialises game item spawner to a location relative to the plane.
+            /* Initialises game item spawner to a location relative to the plane.
+             * 
+             * WARNING, UNITY MAKES AN ARBITRATY DECISION FOR PLANE SCALING AND 
+             * DOES NOT ATTEMPT TO NOTIFY YOU ABOUT IT.
+             * 
+             * Scaling a unit on a plane is 10x the scale on a 3d object like a cube, meaning
+             * if we want to place a 3d object to a position relative of a plane, we must take
+             * into account that the units are 10x greater.
+             * 
+             * Tl;dr - use groundScale * 5 to position the spawner.
+             */
             Vector3 groundPos = ground.transform.position;
             Vector3 groundScale = ground.transform.localScale;
+            Vector3 obstacleScale = obstacle.transform.localScale;
+            float spawnerPosY = 1;
 
             this.transform.position = new Vector3(
                 groundPos.x,
-                groundPos.y + 1.5f,
-                groundPos.z * Mathf.Pow(groundScale.z, 2)
+                groundPos.y + spawnerPosY,
+                groundScale.z * (10 / 2) // ???
             );
 
             this.transform.localScale = new Vector3(
-                groundScale.x,
+                (groundScale.x * 10) - obstacleScale.x,
                 1,
                 0.1f
             );
@@ -53,7 +65,7 @@ namespace Assets.Scripts
 
             // Randomise x position of spawned game item.
             spawnedGameItem.transform.position = new Vector3(
-                Random.Range(-(spawnerPos.x * Mathf.Pow(spawnerScale.x, 2)), (spawnerPos.x * Mathf.Pow(spawnerScale.x, 2))) + spawnedGameItem.transform.localScale.x,
+                Random.Range(-spawnerScale.x / 2, spawnerScale.x / 2),
                 spawnerPos.y,
                 spawnerPos.z
             );

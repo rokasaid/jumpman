@@ -14,7 +14,7 @@ namespace Assets.Scripts.Controllers
         private const float nextX = 100;
 
         public static GameStateController instance { get; private set; }
-        public GameObject player, text, healthSprite, healthAmountCanvas;
+        public GameObject player, text, healthSprite, healthAmountCanvas, invisibleWallL, invisibleWallR;
         private Stack<GameObject> healthSprites;
         private int playerHealth;
 

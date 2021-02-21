@@ -48,16 +48,18 @@ namespace Assets.Scripts
                 characterObject.velocity = new Vector3(characterObject.velocity.x, 0, characterObject.velocity.z);
             }
 
-            // FIXME NullPtrEx on jumping 
-            if (collision.collider.gameObject.GetComponent<AbstractGameItem>().Collide().Equals(PlayerEvent.HealthOrbEvent))
+            if (PlayerEvent.HealthOrbEvent.Equals(collision.collider.gameObject.GetComponent<AbstractGameItem>()?.Collide()))
             {
                 Controllers.GameStateController.instance.IncreaseHealth();
                 GameObject.Destroy(collision.collider.gameObject);
             }
-
-            if (collision.collider.gameObject.GetComponent<AbstractGameItem>().Collide().Equals(PlayerEvent.ObstacleEvent))
+            else if (PlayerEvent.ObstacleEvent.Equals(collision.collider.gameObject.GetComponent<AbstractGameItem>()?.Collide()))
             {
                 Controllers.GameStateController.instance.DecreaseHealth();
+            }
+            else if (PlayerEvent.InvisibleWallEvent.Equals(collision.collider.gameObject.GetComponent<InvisibleWall>()?.Collide())){
+                float tempCharacterVelocityX = characterObject.velocity.x;
+                characterObject.velocity = new Vector3(collision.relativeVelocity.x * -2, 0, 0);
             }
         }
 
@@ -67,3 +69,4 @@ namespace Assets.Scripts
         }
     }
 }
+

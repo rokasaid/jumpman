@@ -56,27 +56,26 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Controllers\PlayerEffectController.cs" />
-     <Compile Include="Assets\Scripts\Factory\HealthOrbFactory.cs" />
-     <Compile Include="Assets\Scripts\Factory\Obstacle.cs" />
      <Compile Include="Assets\PowerUp\Scripts\CustomizablePowerUp.cs" />
+     <Compile Include="Assets\Scripts\GameItemDespawner.cs" />
      <Compile Include="Assets\PowerUp\Scripts\ScaleParticles.cs" />
-     <Compile Include="Assets\Scripts\Factory\ObstacleFactory.cs" />
      <Compile Include="Assets\PowerUp\Scripts\Utility\Singleton.cs" />
-     <Compile Include="Assets\Scripts\Factory\HealthOrb.cs" />
      <Compile Include="Assets\Scripts\Controllers\GameInitController.cs" />
      <Compile Include="Assets\PowerUp\Scripts\TakeablePowerUp.cs" />
+     <Compile Include="Assets\Scripts\ObservableBase.cs" />
      <Compile Include="Assets\PowerUp\Scripts\PowerUpRotation.cs" />
+     <Compile Include="Assets\Scripts\IObserver.cs" />
      <Compile Include="Assets\PowerUp\Scripts\PowerUpManager.cs" />
-     <Compile Include="Assets\Scripts\Factory\IGameItemFactory.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Enums\PlayerEvent.cs" />
      <Compile Include="Assets\Scripts\Controllers\GameStateController.cs" />
-     <Compile Include="Assets\Scripts\Factory\AbstractGameItem.cs" />
      <Compile Include="Assets\Scripts\GameItemSpawner.cs" />
-     <Compile Include="Assets\Scripts\GameItemDespawner.cs" />
-     <Compile Include="Assets\Scripts\ObservableBase.cs" />
-     <Compile Include="Assets\Scripts\IObserver.cs" />
+     <Compile Include="Assets\Scripts\HealthOrb.cs" />
+     <Compile Include="Assets\Scripts\AbstractGameItem.cs" />
+     <Compile Include="Assets\Scripts\Obstacle.cs" />
+     <Compile Include="Assets\Scripts\InvisibleWall.cs" />
+     <Compile Include="Assets\Scripts\ICollidable.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>E:/Programming/Unity/Jumpman/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>

@@ -6,6 +6,7 @@ namespace Assets.Scripts
     public enum PlayerEvent
     {
         HealthOrbEvent,
-        ObstacleEvent
+        ObstacleEvent,
+        InvisibleWallEvent
     }
 }
